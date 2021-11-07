@@ -1,0 +1,105 @@
+\documentclass[a4paper]{article}
+
+\usepackage{geometry}
+\usepackage{amsfonts, amssymb, amsmath, mathrsfs}
+\usepackage{graphicx, hyphenat, enumerate, float, mathtools}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{titlesec, parskip, setspace}
+\titlespacing{\section}{0pt}{10pt}{0pt}
+\titlespacing{\subsection}{0pt}{10pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{0pt}
+\renewcommand{\baselinestretch}{1.4}
+\usepackage[pagebackref=false,colorlinks,linkcolor=blue,citecolor=magenta]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\usepackage{fvextra}
+\usepackage{tabularx}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{تمرین سری 1}
+\fancyhead[R]{سیستم‌های دیجیتال}
+\fancyfoot[C]{\thepage}
+
+
+\usepackage[fontsloadable]{xepersian} 
+\settextfont{HM XNiloofar}
+\setdigitfont{HM XNiloofar}
+\DefaultMathsDigits
+
+\makeatletter
+\bidi@patchcmd{\@Abjad}{آ}{الف}
+{\typeout{Succeeded in changing `آ` into `الف`}}
+{\typeout{Failed in changing `آ` into `الف`}}
+\makeatother
+\PersianAlphs
+
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
+
+\begin{document}
+\begin{center}
+\begin{bf}
+\huge{به نام خدا} \\
+\vspace*{3mm}
+\large{مخابرات دیجیتال}\\
+\vspace*{1.5mm}
+\large{استاد شعبانی} \\
+\vspace*{1.5mm}
+\large{تمرین سری  1} \\
+\vspace*{1.5mm}
+\large{نیما صمدی - 97102011} \\
+\vspace*{1.5mm}
+\today \\
+\vspace*{1.5mm}
+\line(1,0){400}
+\vspace*{5mm}
+\end{bf}
+\end{center}
+\section{سوال اول}
+ابتدا مطابق توضیحات صورت سوال، توابع 
+\lr{MyHuffman.m}
+و
+\lr{MyLempelZiv.m}
+را نوشتم. این تابع با کامنت‌گذاری مناسب و به صورت توابع مستقل از هم نوشته شده است تا قابلیت استفادۀ مجدد داشته باشد و فهم آن راحت باشد. 
+
+\begin{enumerate}[1)]
+\item نرخ فشرده‌سازی بسته به تعداد سمبل‌ها متفاوت است و تغییر می‌کند. در اینجا خروجی یکی از دفعات اجرای کد دیده می‌شود:
+\begin{latin}
+\begin{Verbatim}[frame=single,
+				baselinestretch=1.2,
+				xleftmargin=1.5cm,
+				xrightmargin=1.5cm,
+				breaklines=true]
+Matlab Huffman coding compresion
+    1.3649
+Avg lenght: 8792
+
+My Huffman coding compresion
+    1.3649
+Avg lenght: 8792
+
+Lempel-Ziv coding compresion rate
+    1.4531
+Avg lenght: 6258
+\end{Verbatim}
+\end{latin}
+میزان فشرده‌سازی برای 3 حالت بیان شده است. خروجی اول از توابع متلب برای کدگذاری هافمن است. خروجی دوم نتیجۀ فشرده‌سازی تابع 
+\lr{MyHuffman.m}
+و خروجی آخر نتیجۀ تابع
+\lr{MyLempelZiv.m}
+است. البته در برخی مواقع نتیجۀ کدگذاری 
+\lr{Huffman}
+تابع من و متلب اندکی با هم تفاوت دارد. به نظر من این به خاطر نحوۀ نسبت دادن کدها می‌باشد. من هر بار دو سمبل با کمترین احتمال را انتخاب می‌کنم و آنها را ترکیب می‌کنم. سپس دوباره سمبل‌ها را مرتب کرده و این روند را ادامه می‌دهم. اما به نظر متلب به نحوۀ دیگری این کار را انجام می‌دهد. به همین خاطر کد‌های نسبت‌داده شده با هم تفاوت دارند هر چند این تفاوت د2ر حد چند بیت است و گاهی نتیجۀ حاصل از کد من از روش متلب بهتر است و برعکس. 
+\item 
+\end{enumerate}
+\section{سوال دوم}
+
+\end{document}
