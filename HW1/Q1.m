@@ -18,7 +18,7 @@ huffman_coded = HuffmanEncoder(text, symbols, my_dict);
 matlab_huffman = huffmanenco(text, matlab_dict);
 
 text = char(strjoin(string(text),''));
-[lempel_coded, lempel_dict] = MyLempelZiv(text, 2);
+[lempel_coded, max_bits] = MyLempelZiv(text, 2);
 
 
 %%%%%%%%%%%%%%%%%%%%% compression rate %%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,9 +30,9 @@ huffman_coded_length = length(char(strjoin(huffman_coded, '')));
 disp((TEXT_LEN * 6) / huffman_coded_length);
 disp("Avg lenght: " + string(huffman_coded_length));
 disp("Lempel-Ziv coding compresion rate")
-lempel_coded_length = length(char(strjoin(string(lempel_coded), '')));
-disp((TEXT_LEN * 6) / (lempel_coded_length + TEXT_LEN));
-disp("Avg lenght: " + string(lempel_coded_length));
+lempel_coded_length = length(lempel_coded);
+disp((TEXT_LEN * 6) / (lempel_coded_length * (max_bits + 6) ));
+disp("Avg lenght: " + string(lempel_coded_length * (max_bits + 6)));
 
 %%%%%%%%%%%%%%%%%%%%% dict length %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 huffman_dict_len = 0;

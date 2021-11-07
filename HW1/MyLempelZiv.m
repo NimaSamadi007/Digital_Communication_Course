@@ -1,8 +1,10 @@
-function [codes, dict] = MyLempelZiv(input_data, symbol_len)
+function [codes, max_bits] = MyLempelZiv(input_data, symbol_len)
 %MYLEMPELZIV calculates lempelziv code based on the input data
 %PARAMETERS
 %       input_data: input string to be coded
 %       symbol_len: input symbol length
+%       codes: coded string
+%       max_bits: maximum bits required for symbol representation
 
     observed_symbols = {};
     codes = {};
@@ -12,7 +14,7 @@ function [codes, dict] = MyLempelZiv(input_data, symbol_len)
     % Add first item to the codes list:
     coded_symbol = AddIndex(0, input_data(1:symbol_len));
     codes = AppendToCell(codes, coded_symbol);
-    
+    max_bits = 0;
     origin = symbol_len + 1;
     for i=symbol_len+1:symbol_len:length(input_data)
         current_symbol = input_data(origin:i+symbol_len-1);
@@ -28,6 +30,11 @@ function [codes, dict] = MyLempelZiv(input_data, symbol_len)
                 last_symb_ind = FindSymbolIndex(observed_symbols, ...
                                         current_symbol(1:end-symbol_len));
             end
+            % required bit to represent index
+            req_bit = ceil(log(last_symb_ind) / log(2));
+            if req_bit > max_bits
+                max_bits = req_bit;
+            end
             % add index to the first of chr
             coded_symbol = AddIndex(last_symb_ind, current_symbol(end-symbol_len+1:end));
             codes = AppendToCell(codes, coded_symbol);
@@ -41,7 +48,6 @@ function [codes, dict] = MyLempelZiv(input_data, symbol_len)
         coded_symbol = AddIndex(last_symb_ind, '!');
         codes = AppendToCell(codes, coded_symbol);
     end
-    dict = observed_symbols;
 end
 
 function mod_cell = AppendToCell(in_cell, item)
