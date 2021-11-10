@@ -9,7 +9,7 @@
  left=20mm,
  top=20mm,
  }
-\usepackage{tikz}
+\usepackage{tikz,array}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.16}
 \usepackage{titlesec, parskip, setspace}
@@ -20,7 +20,10 @@
 \usepackage[pagebackref=false,colorlinks,linkcolor=blue,citecolor=magenta]{hyperref}
 \usepackage{fancyvrb}
 \usepackage{fancyhdr}
+\usepackage{xcolor,colortbl}
 \usepackage{fvextra}
+\usepackage{multirow}
+\usepackage{blindtext}
 \usepackage{tabularx}
 \pagestyle{fancy}
 \fancyhead{}
@@ -41,6 +44,7 @@
 {\typeout{Failed in changing `آ` into `الف`}}
 \makeatother
 \PersianAlphs
+
 
 \renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
 
@@ -228,5 +232,105 @@ Avg lenght: 23817
 است.
 \end{enumerate}
 \section{سوال دوم}
-
+\subsection{کدگذاری متنی}
+ابتدا باید تعداد سمبل‌های موجود را پیدا کرد.
+\begin{table}[H]
+\begin{LTR}
+\centering
+\scalebox{1}{
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multirow{2}{*}{\lr{File Name}} & \multirow{2}{*}{\lr{Number of characters}} & \multicolumn{2}{c|}{\lr{Number of Symbols}} \\
+\cline{3-4}
+ & & \lr{Huffman} & \lr{Lempel-Ziv} \\
+\hline 
+\lr{Text File 1} & $1456$ & & \\
+\hline 
+\lr{Text File 2} & $4674$ & & \\
+\hline 
+\lr{Text File 3} & $9010$ & & \\
+\hline
+\end{tabular}
+}
+\end{LTR}
+\end{table}
+جدول دوم:
+\begin{table}[H]
+\begin{LTR}
+\centering
+\scalebox{0.9}{
+\begin{tabular}{|>{\centering}p{0.06\textwidth}|>{\centering}p{0.12\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering\arraybackslash}p{0.105\textwidth}|}
+\hline
+ & & \multicolumn{3}{c|}{\lr{Huffman}} & \multicolumn{3}{c|}{\lr{Lempel-Ziv}}\\
+\cline{3-8}
+\multirow{2}{0.04\textwidth}{\lr{Text File}} & \multirow{2}{0.10\textwidth}{\lr{Original Number of bits}} & \lr{Compressed Number of bits} & \lr{Compression ratio} & \lr{Compression Time (sec)} & \lr{Compressed Number of bits} & \lr{Compression ratio} & \lr{Compression Time (sec)} \\
+\hline
+$1$ & & & & & & & \\
+\hline
+$2$ & & & & & & & \\
+\hline
+$3$ & & & & & & & \\
+\hline
+\multicolumn{1}{c}{} & & \lr{Mean} & & & & &  \\
+\cline{3-5}\cline{7-8}
+\multicolumn{1}{c}{} & & \lr{Standard deviation}& & & & & \\
+\cline{3-5}\cline{7-8}
+\end{tabular}
+}
+\end{LTR}
+\end{table}
+\subsection{کدگذاری تصویر}
+\begin{table}[H]
+\begin{LTR}
+\centering
+\scalebox{1}{
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multirow{2}{*}{\lr{File Name}} & \multirow{2}{*}{\lr{Number of layers}} & \multicolumn{2}{c|}{\lr{Number of Symbols}} \\
+\cline{3-4}
+ & & \lr{Huffman} & \lr{Lempel-Ziv} \\
+\hline 
+\lr{Image file 1} & $1$ & & \\
+\hline 
+\lr{Image file 2} & $1$ & & \\
+\hline 
+\lr{Image file 3} & $1$ & & \\
+\hline
+\lr{Image file 4} & $1$ & & \\
+\hline
+\lr{Image file 5} & $1$ & & \\
+\hline
+\end{tabular}
+}
+\end{LTR}
+\end{table}
+جدول بعد
+\begin{table}[H]
+\begin{LTR}
+\centering
+\scalebox{0.9}{
+\begin{tabular}{|>{\centering}p{0.06\textwidth}|>{\centering}p{0.12\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering}p{0.11\textwidth}|>{\centering\arraybackslash}p{0.105\textwidth}|}
+\hline
+ & & \multicolumn{3}{c|}{\lr{Huffman}} & \multicolumn{3}{c|}{\lr{Lempel-Ziv}}\\
+\cline{3-8}
+\multirow{2}{0.04\textwidth}{\lr{Text File}} & \multirow{2}{0.10\textwidth}{\lr{Original Number of bits}} & \lr{Compressed Number of bits} & \lr{Compression ratio} & \lr{Compression Time (sec)} & \lr{Compressed Number of bits} & \lr{Compression ratio} & \lr{Compression Time (sec)} \\
+\hline
+$1$ & & & & & & & \\
+\hline
+$2$ & & & & & & & \\
+\hline
+$3$ & & & & & & & \\
+\hline
+$4$ & & & & & & & \\
+\hline
+$5$ & & & & & & & \\
+\hline
+\multicolumn{1}{c}{} & & \lr{Mean} & & & & &  \\
+\cline{3-5}\cline{7-8}
+\multicolumn{1}{c}{} & & \lr{Standard deviation}& & & & & \\
+\cline{3-5}\cline{7-8}
+\end{tabular}
+}
+\end{LTR}
+\end{table}
 \end{document}
