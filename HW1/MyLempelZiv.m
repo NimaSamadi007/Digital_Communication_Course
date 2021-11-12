@@ -48,6 +48,8 @@ function [codes, max_bits] = MyLempelZiv(input_data, symbol_len)
         coded_symbol = AddIndex(last_symb_ind, '!');
         codes = AppendToCell(codes, coded_symbol);
     end
+    shape = size(observed_symbols);
+    fprintf("Number of symbols in Lempel-Ziv: %d \n", shape(2));
 end
 
 function mod_cell = AppendToCell(in_cell, item)

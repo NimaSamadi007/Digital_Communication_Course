@@ -60,6 +60,7 @@ dataInDecimal = fread(fid);
 
 
 TEXT_LEN = length(dataInDecimal);
+BIT_NUM = ceil(log2(length(unique(dataInDecimal))));
 % symbols are between 32 to 121 which are 90. So I map [32, 121] to
 % [100, 189] interval and each symbol have a offset of +68
 
@@ -81,42 +82,18 @@ text = char(strjoin(string(dataInDecimal),''));
 
 
 disp("Matlab Huffman coding compresion")
-disp((TEXT_LEN * 6) / length(matlab_huffman));
+disp((TEXT_LEN * BIT_NUM) / length(matlab_huffman));
 disp("Avg lenght: " + string(length(matlab_huffman)));
 disp("My Huffman coding compresion")
 huffman_coded_length = length(char(strjoin(huffman_coded, '')));
-disp((TEXT_LEN * 6) / huffman_coded_length);
+disp((TEXT_LEN * BIT_NUM) / huffman_coded_length);
 disp("Avg lenght: " + string(huffman_coded_length));
 disp("Lempel-Ziv coding compresion rate")
 lempel_coded_length = length(lempel_coded);
-disp((TEXT_LEN * 6) / (lempel_coded_length * (max_bits + 6) ));
-disp("Avg lenght: " + string(lempel_coded_length * (max_bits + 6)));
+disp((TEXT_LEN * BIT_NUM) / (lempel_coded_length * (max_bits + BIT_NUM) ));
+disp("Avg lenght: " + string(lempel_coded_length * (max_bits + BIT_NUM)));
 
 
-%{
-function Mismatch(symbols, dist, dict1, dict2)
-%MISMATCH prints mismatches:
-    len = length(symbols);
-    for i=1:len
-        if length(dict1{i, 2}) ~= length(dict2{i, 2})
-            disp("Length Mismatch in i = " + string(i))
-            disp("My dict length: " + string(length(dict1{i, 2})) + ...
-                 " Matlab dict length: " + string(length(dict2{i, 2})));
-            disp("Symbol: " + string(symbols(i)) ...
-                 + " With prob: " + string(dist(i)));
-        end
-    end
-end
-
-function chr = ConvertArrToChar(arr)
-%CONVERTARRTOCHAR converts binary array to coressponded char
-    chr = ' ';
-    string_arr = string(arr);
-    for i=1:length(string_arr)
-        chr = char(strcat(chr, string_arr(i)));
-    end
-end
-%}
     
     
     

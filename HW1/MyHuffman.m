@@ -28,7 +28,8 @@ function dict = MyHuffman(symbols, prob_dist)
         internal_nodes = internal_nodes - 1;
     end
     % from nodes find huffman code recursively
-    nodes = CalCode(nodes, length(nodes), ' ', symbol_num);
+    shape = size(nodes);
+    nodes = CalCode(nodes, shape(1), ' ', symbol_num);
     % extract symbol nodes 
     dict = NodesToCodes(nodes, symbol_num);
     % map input symbols and my symbols
