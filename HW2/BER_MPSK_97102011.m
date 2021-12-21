@@ -20,7 +20,6 @@ end
 function bin_symbols = SymbolGenerator(num, M)
 % generates random binary symbols. Number of
 % symbols is determined by 'num'
-    rng(1);
     bin_symbols = randi([0, 1], 1, num);
     if rem(num, M)
         bin_symbols = [bin_symbols, zeros(1, M - rem(num, M))];
@@ -71,8 +70,6 @@ function t_sig = ConstellationMapper(symbols, M)
     t_sig = zeros(num_symbols, 2);
     % mapping each symbol
     for i=1:num_symbols
-        % m_i = [0, M-1]
-        %m_i = find(gray_symb_dict == symbols(i)) - 1;
         t_sig(i, :) = [cos(2*pi*symbols(i) / M), sin(2*pi*symbols(i) / M)];
     end
 end
