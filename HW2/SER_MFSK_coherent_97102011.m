@@ -1,9 +1,8 @@
-function SER_val = SER_2_FSK_coherent_97102011(N, EbN0_dB)
+function SER_val = SER_MFSK_coherent_97102011(M, N, EbN0_dB)
 %SER_2_FSK_COHERENT_97102011 2-FSK coherent modulation
-    M = 2;
+    % noise power
     K = log2(M);
     
-    % noise power
     EB_N0_w = 10 ^ (EbN0_dB / 10);  
     N0_w = (1 / (K * EB_N0_w));    
        

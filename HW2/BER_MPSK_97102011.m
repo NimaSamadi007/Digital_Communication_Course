@@ -10,6 +10,10 @@ function BER = BER_MPSK_97102011(M, N, EbN0_dB)
     transmitted_signal = ConstellationMapper(dec_t_symbols, M);
     % add white noise to transmitted signal
     noisy_signal = Channel(transmitted_signal, N0_w / 2);
+    % Plotting constellation:
+    %figure;
+    %scatter(noisy_signal(:, 1), noisy_signal(:, 2))
+    %grid on
     % demodulation and converting to binary
     dec_r_symbols = Demodulator(noisy_signal, M);
     bin_r_symbols = Dec2BinConv(dec_r_symbols, log2(M), dict(:, end));

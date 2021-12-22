@@ -5,11 +5,11 @@ function SER_val = SER_2_PAM_coherent_97102011(N, EbN0_dB)
     
     % noise power
     EB_N0_w = 10 ^ (EbN0_dB / 10);  
-    N0_w = (1 / (K * EB_N0_w));
+    N0_w = (1 / (2 * K * EB_N0_w));
     
     symbs = SymbolGenerator(N, K);
     dec_symbs = Bin2Dec(symbs, K);
-    mod_signal = ConstellationMapper(dec_symbs, M);
+    mod_signal = dec_symbs;
     recieved_signal = Channel(mod_signal, N0_w);
     detected_signal = Demodulator(recieved_signal, M);
     SER_val = CalSER(dec_symbs, detected_signal);
@@ -34,16 +34,6 @@ function dec_symbols = Bin2Dec(bin_symbols, K)
     end
 end
 
-
-function mod_signal = ConstellationMapper(dec_symbols, M)
-% mappes decimal symbols to PAM signals and returns
-% modulated signal
-    mod_signal = zeros(1, length(dec_symbols));
-    for i=1:length(dec_symbols)
-        mod_signal(i) = (2*(dec_symbols(i)+1) - 1 - M);
-    end
-end
-
 function n_sig = Channel(t_sig, N0)
 % simulates AWGN channel - N0 is in Watt
 % the noise of PAM channel is one dimmenstional
@@ -54,9 +44,8 @@ end
 
 function detected_symbols = Demodulator(n_sig, M)
 % demodulator in reciever and extracting symbols
-    m = 1:M;
     % constellation points used to recover symbols
-    const_points = 2.*m-1-M;
+    const_points = 0:M-1;
     detected_symbols = zeros(1, length(n_sig));
     for i=1:length(n_sig)
         distance_vec = (const_points - n_sig(i)) .^ 2;
@@ -72,3 +61,4 @@ function ser = CalSER(t_symbs, r_symbs)
     error = length(find(t_symbs ~= r_symbs));
     ser = error / (length(t_symbs));
 end
+

@@ -1,5 +1,5 @@
 clc
-%clear
+clear
 close
 
 % constants:
@@ -7,7 +7,8 @@ M_BITs = [2, 4, 8, 16];
 N = 100000;
 % in dBW - assume symbols energy equals 1 watt
 EbN0_dB = -6:2:12;
-%{
+BER_MPSK_97102011(8, N, 10);
+
 ber_vals = zeros(length(M_BITs), length(EbN0_dB));
 
 %%%%%%%%%%%%%% Part A: %%%%%%%%%%%%%%%%%%%%%
@@ -17,8 +18,7 @@ for j=1:length(M_BITs)
         ber_vals(j, i) = BER_MPSK_97102011(M_BITs(j), N, EbN0_dB(i));
     end
 end
-%}
-%{
+
 fprintf("Plotting ... \n");
 % Plot BER vs SNR for each M
 figure;
@@ -31,7 +31,7 @@ title('BER vs Eb/N0')
 xlabel('\epsilon_b/N_0 (dB)')
 ylabel('Bit Error Rate')
 legend('b-psk', '4-psk', '8-psk', '16-psk');
-%}
+
 %%%%%%%%%%%%%%%% Part B: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 theo_ber_vals = zeros(length(M_BITs), length(EbN0_dB));
 for i=1:length(M_BITs)
@@ -50,6 +50,7 @@ for i=1:4
     title("BER for " + string(M_BITs(i)) + "-PSK")
     legend('Theoretical BER', 'estimated BER')
 end
+
 %%%%%%%%%%%%%%%% Part C: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%% FUNCTIONS %%%%%%%%%%%%%%%%%%%%%%%%
