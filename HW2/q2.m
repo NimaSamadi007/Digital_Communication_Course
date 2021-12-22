@@ -28,7 +28,7 @@ xlabel('\epsilon_b/N_0 (dB)')
 ylabel('Symbol Error Rate')
 legend('bPAM', 'bPSK', 'bFSK Coherent', 'bFSK Non-coherent');
 
-%{
+
 ser_vals = zeros(length(M_BITs), length(EbN0_dB));
 
 for j=1:length(M_BITs)
@@ -48,6 +48,5 @@ end
 grid on
 title('SER vs Eb/N0')
 xlabel('\epsilon_b/N_0 (dB)')
-ylabel('Bit Error Rate')
+ylabel('Symbol Error Rate')
 legend('2-FSK', '4-FSK', '8-FSK', '16-FSK', '32-FSK');
-%}

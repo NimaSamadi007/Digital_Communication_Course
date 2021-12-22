@@ -1,5 +1,5 @@
 clc
-clear
+%clear
 close
 
 % constants:
@@ -7,10 +7,8 @@ M_BITs = [2, 4, 8, 16];
 N = 100000;
 % in dBW - assume symbols energy equals 1 watt
 EbN0_dB = -6:2:12;
-BER_MPSK_97102011(8, N, 10);
 
 ber_vals = zeros(length(M_BITs), length(EbN0_dB));
-
 %%%%%%%%%%%%%% Part A: %%%%%%%%%%%%%%%%%%%%%
 for j=1:length(M_BITs)
     fprintf("Calculating BER for %d-PSK \n", M_BITs(j))
@@ -33,6 +31,7 @@ ylabel('Bit Error Rate')
 legend('b-psk', '4-psk', '8-psk', '16-psk');
 
 %%%%%%%%%%%%%%%% Part B: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 theo_ber_vals = zeros(length(M_BITs), length(EbN0_dB));
 for i=1:length(M_BITs)
     for j = 1:length(EbN0_dB)
@@ -52,7 +51,15 @@ for i=1:4
 end
 
 %%%%%%%%%%%%%%%% Part C: %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% constellation plotting - not included in final code - just for reporting
+%{
+ber = BER_MPSK_97102011(8, N, -6);
+ber = BER_MPSK_97102011(8, N, 0);
+ber = BER_MPSK_97102011(8, N, 4);
+ber = BER_MPSK_97102011(8, N, 8);
+ber = BER_MPSK_97102011(8, N, 10);
+ber = BER_MPSK_97102011(8, N, 12);
+%}
 %%%%%%%%%%%%%%%%%%%%%%%% FUNCTIONS %%%%%%%%%%%%%%%%%%%%%%%%
 function ber = CalTheoreticalBER(M, eb_n0_db)
     eb_n0_w = 10 ^ (eb_n0_db / 10);
